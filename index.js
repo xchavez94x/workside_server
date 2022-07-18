@@ -11,6 +11,8 @@ const {
     connect
 } = require('mongoose');
 
+const usersRouter = require('./routes/users');
+
 config()
 const port = process.env.PORT;
 const dbUrl = process.env.DB_URI;
@@ -18,6 +20,7 @@ const dbUrl = process.env.DB_URI;
 app.use(cors(corsConfig));
 app.use(bodyParser.json());
 
+app.use('/users', usersRouter)
 
 connect(dbUrl)
     .then(res => {

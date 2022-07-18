@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 const userSchema = new Schema({
-    info: {
+    contact: {
         firstname: {
             type: String, 
             required: true
@@ -10,40 +10,35 @@ const userSchema = new Schema({
             type: String, 
             required: true
         },
-        birthday: {
-            type: String,
-            required: true
-        },
-        image: {
-            type: String,
-            required: true
-        }
-    },
-    contact: {
         email: {
             type: String,
             required: true
         },
-        phone: {
-            type: Number, 
-            required: true
-        }, 
         password: {
             type: String, 
             required: true
         }
     },
-    experience: {
-        title: {
+    additional_info: {
+        phone: {
+            type: Number, 
+        }, 
+        birthday: {
             type: String
         },
-        level: {
-            type: String,
-            required: true
+        profile_image: {
+            type: String
         },
-        bio: {
-            type: String,
-            required: true
+        experience: {
+            job_title: {
+                type: String
+            },
+            level: {
+                type: String,
+            },
+            bio: {
+                type: String,
+            }
         }
     }
 }, {
