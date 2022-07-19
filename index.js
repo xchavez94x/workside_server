@@ -1,16 +1,16 @@
-const { config } = require('dotenv')
 const express = require('express');
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
-
+const {
+    config
+} = require('dotenv')
 const {
     corsConfig
 } = require('./utils/constants');
 const {
-    connect
-} = require('mongoose');
-
+    connectToServer
+} = require('./utils/helpers')
 const usersRouter = require('./routes/users');
 
 config()
@@ -22,19 +22,4 @@ app.use(bodyParser.json());
 
 app.use('/users', usersRouter)
 
-connect(dbUrl)
-    .then(res => {
-        app.listen(port, () => {
-            console.log(`Example app listening on port ${port}!`)
-            console.log('connected to db')
-        })
-    })
-    .catch( error => {
-        if( error ) {
-            throw new Error({
-                message: "SOmething went wrong",
-                code: 500,
-                data: error
-            })
-        }
-    })
+connectToServer(dbUrl, port, app)
